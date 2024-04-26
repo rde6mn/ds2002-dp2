@@ -22,7 +22,7 @@ album_1 = {
 album_2 = {
     "name" : "Lover",
     "artist" : "Taylor Swift",
-    "genre" : "rnb"
+    "genre" : "pop"
 }
 
 album_3 = {
@@ -43,6 +43,10 @@ album_5 = {
     "genre" : "pop"
 }
 
-collection.insert_many([album_1,album_2, album_3, album_4, album_5])
+#collection.insert_many([album_1,album_2, album_3, album_4, album_5])
+#getAlbums = []
+#getAlbums = db.lab9.find({"genre":"rnb"})
+#collection.find()
 
-collection.find({genre:"rnb"})
+for x in collection.find({"genre":"rnb"}):
+  print(x)
