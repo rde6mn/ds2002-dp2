@@ -43,10 +43,9 @@ album_5 = {
     "genre" : "pop"
 }
 
-#collection.insert_many([album_1,album_2, album_3, album_4, album_5])
-#getAlbums = []
-#getAlbums = db.lab9.find({"genre":"rnb"})
-#collection.find()
+#inserts albums listed above into database
+collection.insert_many([album_1,album_2, album_3, album_4, album_5])
 
+#prints out 3 albums matching the search
 for x in collection.find({"genre":"rnb"}):
   print(x)
