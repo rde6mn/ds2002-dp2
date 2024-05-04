@@ -18,9 +18,9 @@ directory = "/workspace/ds2002-dp2/data"
 
 #file reading
 
-success_imports = 0
-corrupted_imports = 0
-no_imports = 0
+#success_imports = 0
+#corrupted_imports = 0
+#no_imports = 0
 
 for filename in os.listdir(directory):
     with open(os.path.join(directory, filename)) as f:
@@ -37,20 +37,20 @@ for filename in os.listdir(directory):
             # if JSON contains data more than one entry
             # insert_many is used else insert_one is used
             if isinstance(file_data, list):
-                for list_file in file_data:
-                    try:            
-                        results = collection.insert_one(list_file)
-                    except Exception as e:
-                        print(e, "when importing into Mongo", filename)
-                        corrupted_imports +=1
-                        #continue
+                
+                try:            
+                    results = collection.insert_many(file_data)
+                except Exception as e:
+                    print(e, "when importing into Mongo", filename)
+                    #corrupted_imports +=1
+                    #continue
             else:
                 try:
                     collection.insert_one(file_data)
-                    success_imports += 1
+                    #success_imports += 1
                 except Exception as e:
                     print(e, "when importing into Mongo", f)
-                    corrupted_imports +=1
+                    #corrupted_imports +=1
                     #continue
                 #print(e)
                 # assuming you have defined a connection to your db and collection already:
@@ -72,7 +72,7 @@ for filename in os.listdir(directory):
                
            
 
-print("Corrupt Number =" + str(corrupted_imports))
-print("No Import =" + str(no_imports))
-print("Successful Import =" + str(success_imports))
+#print("Corrupt Number =" + str(corrupted_imports))
+#print("No Import =" + str(no_imports))
+#print("Successful Import =" + str(success_imports))
 
